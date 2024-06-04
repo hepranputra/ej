@@ -1,16 +1,25 @@
-console.log(countBs("BOB"));
+console.log(countBs1("BOB"));
+console.log(countBs2("BOB"));
+// → 2
 console.log(countChar("kakkerlak", "k"));
+// → 4
 
-function countBs(str) {
-    return countChar(str, "B");
+function countBs1(str) {
+    let total = 0;
+    for (let char of str) {
+        if (char == "B") total++;
+    }
+    return total;
 }
 
 function countChar(str, char) {
-    let count = 0;
-    for (let i = 0; i < str.length; i++) {
-        if (str[i] == char) {
-            count++;
-        }
+    let total = 0;
+    for (let charOfStr of str) {
+        if (charOfStr == char) total++;
     }
-    return count;
+    return total;
+}
+
+function countBs2(str) {
+    return countChar(str, "B");
 }
