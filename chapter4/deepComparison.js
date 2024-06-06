@@ -11,10 +11,8 @@ function deepEqual(x, y) {
     if (x === y) {
         return true;
     }
-    // Compare data type.
-    if (x == null || typeof x != "object" ||
-        y == null || typeof y != "object") {
-            
+    // Deal with null
+    if (x == null || y == null) {
         return false;
     }
     let keysX = Object.keys(x);
