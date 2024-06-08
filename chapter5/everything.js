@@ -6,17 +6,14 @@ console.log(every([], n => n < 10));
 // → true
 
 function every(array, test) {
-    // // Version 1
-    // return !array.some(n => !test(n));
+    // VERSION 1
+    // for (let n of array) {
+    //     if (!test(n)) {
+    //         return false
+    //     }
+    // }
+    // return true;
     
-    // /*
-    // Version 2
-    for (let n of array) {
-        if (!test(n)) {
-            return false;
-        }
-    }
-    return true;
-    // */
+    // VERSION 2
+    return !array.some(n => !test(n));
 }
-
