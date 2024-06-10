@@ -6,26 +6,35 @@ console.log(deepEqual(obj, {here: 1, object: 2}));
 console.log(deepEqual(obj, {here: {is: "an"}, object: 2}));
 // → true
 
-function deepEqual(x, y) {
+function deepEqual(v1, v2) {
     // Compare without type conversion.
-    if (x === y) {
+    if (v1 === v2) {
         return true;
     }
+    
     // Deal with null
-    if (x == null || y == null) {
+    if (v1 == null || v2 == null) {
         return false;
     }
-    let keysX = Object.keys(x);
-    let keysY = Object.keys(y);
-    // Compare length of array's element or object's key.
-    if (keysX.length != keysY.length) {
+    
+    // Compare their lengths.
+    let keys1 = Object.keys(v1);
+    let keys2 = Object.keys(v2);
+    if (keys1.length != keys2.length) {
         return false;
     }
-    // Compare availability.
-    for (let key of keysX) {
-        if (!keysY.includes(key) || !deepEqual(x[key], y[key])) {
+    
+    for (let key of keys1) {
+        // Compare availability.
+        if (!keys2.includes(key)) {
+            return false;
+        }
+        // Deal nested array.
+        if (!deepEqual(v1[key], v2[key])) {
             return false;
         }
     }
+    
+    // If passed all the tests above, 2 values must be the same.
     return true;
 }
